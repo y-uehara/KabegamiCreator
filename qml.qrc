@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>KCMenuBar.qml</file>
+        <file>KCImageCanvas.qml</file>
+        <file>KCBrightnessSlider.qml</file>
+    </qresource>
+</RCC>
