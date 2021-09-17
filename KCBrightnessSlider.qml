@@ -23,7 +23,12 @@ Item {
 
         onMoved: {
             app.brightness = value;
-            kcImageCanvas.update();
+        }
+
+        onPressedChanged: {
+            if(!slider.pressed) {
+                kcImageCanvas.update();
+            }
         }
     }
     Text {
