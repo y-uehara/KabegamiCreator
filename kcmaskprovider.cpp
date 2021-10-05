@@ -7,6 +7,9 @@ KCMaskProvider::KCMaskProvider() : QQuickImageProvider(QQuickImageProvider::Pixm
 
 QPixmap KCMaskProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
 {
+    Q_UNUSED(size);
+    Q_UNUSED(requestedSize);
+
     auto params = id.split("&");
     int imageWidth = params[0].toInt();
     int imageHeight = params[1].toInt();
@@ -15,6 +18,8 @@ QPixmap KCMaskProvider::requestPixmap(const QString &id, QSize *size, const QSiz
     int maskY = params[3].toInt();
     int maskWidth = params[4].toInt();
     int maskHeight = params[5].toInt();
+
+    //qDebug() << "mask " << maskX << " " << maskY << " " << maskWidth << " " << maskHeight;
 
     auto image = QImage(imageWidth, imageHeight, QImage::Format_ARGB32);
     image.fill(qRgba(0x00, 0x00, 0x00, 0x80));
