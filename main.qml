@@ -10,8 +10,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("Kabegami Creator")
 
-    property int brightness: 100
-    property url fileUrl: ""
 
     onWidthChanged: { kcImageCanvas.maskEnable = false }
     onHeightChanged: { kcImageCanvas.maskEnable = false }
@@ -40,8 +38,7 @@ ApplicationWindow {
 
         title: "Please choose a file"
         onAccepted: {
-            app.fileUrl = openFileDialog.fileUrl;
-            kcImageCanvas.update();
+            kcImageCanvas.openFile(openFileDialog.fileUrl);
         }
     }
 
@@ -51,9 +48,7 @@ ApplicationWindow {
         selectExisting: false
         title: "Please choose a file"
         onAccepted: {
-            var widthFactor =  kcImageCanvas.sourceSize.width / kcImageCanvas.imageWidth;
-            var heightFactor = kcImageCanvas.sourceSize.height / kcImageCanvas.imageHeight
-            kcImageExporter.exportFile(saveFileDialog.fileUrl, kcImageCanvas.clipX * widthFactor, kcImageCanvas.clipY * heightFactor, kcImageCanvas.clipWidth * widthFactor, kcImageCanvas.clipHeight * heightFactor);
+            kcImageCanvas.exportFile(saveFileDialog.fileUrl);
         }
     }
 }

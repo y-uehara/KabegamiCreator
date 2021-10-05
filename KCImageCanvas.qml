@@ -3,8 +3,11 @@ import QtQuick 2.0
 Image {
     id: root
 
-    property string imageParameter: app.fileUrl + "&" +
-                            app.brightness + "&" +
+    property url fileUrl: ""
+    property int brightness: 100
+
+    property string imageParameter: fileUrl + "&" +
+                            brightness + "&" +
                             imageWidth + "&" +
                             imageHeight
 
@@ -24,8 +27,26 @@ Image {
     source: ""
 
     function update() {
-        source = app.fileUrl == "" ? "" : "image://kcImageProvider/" + imageParameter;
+        source = fileUrl == "" ? "" : "image://kcImageProvider/" + imageParameter;
     }
+
+    function setBrightness(val) {
+        brightness = val;
+        update();
+    }
+
+    function openFile(openUrl) {
+        fileUrl = openUrl;
+        update();
+    }
+
+    function exportFile(saveUrl) {
+        var widthFactor =  sourceSize.width / imageWidth;
+        var heightFactor = sourceSize.height / imageHeight
+
+        kcImageExporter.exportFile(saveUrl, clipX * widthFactor, clipY * heightFactor, clipWidth * widthFactor, clipHeight * heightFactor);
+    }
+
 
     Image {
         id: mask

@@ -3,38 +3,39 @@ import QtQuick.Controls 2.12
 
 Item {
     id: root
+    property int brightness: 100
 
     Text {
         id: brightnessText
         text: "Brightness"
-        anchors.left: root.left
-        anchors.verticalCenter: root.verticalCenter
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
     }
     Slider {
         id: slider
         from: 0
         to: 100
-        value: app.brightness
+        value: brightness
 
         anchors.left: brightnessText.right
         anchors.right: percentText.left
-        anchors.top: root.top
-        anchors.bottom: root.bottom
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
 
         onMoved: {
-            app.brightness = value;
+            brightness = value;
         }
 
         onPressedChanged: {
             if(!slider.pressed) {
-                kcImageCanvas.update();
+                kcImageCanvas.setBrightness(brightness);
             }
         }
     }
     Text {
         id: percentText
-        text: app.brightness + "%"
-        anchors.right: root.right
-        anchors.verticalCenter: root.verticalCenter
+        text: brightness + "%"
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
     }
 }
