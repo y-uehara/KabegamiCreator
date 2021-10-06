@@ -16,19 +16,19 @@ Item {
     }
 
     ComboBox {
-        textRole: "text"
+        textRole: "explain"
         valueRole: "value"
 
         model: ListModel {
             id: model
-            ListElement { value: 1; text: "Free size" }
-            ListElement { value: 2; text: "Full HD (1920x1080)" }
-            ListElement { value: 3; text: "WUXGA (1920x1200)" }
+            ListElement { value: 1; explain: "Free size" }
+            ListElement { value: 2; explain: "Full HD (1920x1080)" }
+            ListElement { value: 3; explain: "WUXGA (1920x1200)" }
         }
 
         delegate: ItemDelegate {
             id: itemDelegate
-            contentItem: Text { text: model.text }
+            contentItem: Text { text: explain }
         }
 
         onActivated: {console.log(currentValue);}
