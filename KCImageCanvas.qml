@@ -6,10 +6,8 @@ Image {
     property url fileUrl: ""
     property int brightness: 100
 
-    property string imageParameter: fileUrl + "&" +
-                            brightness + "&" +
-                            imageWidth + "&" +
-                            imageHeight
+    property string imageParameter: fileUrl + "&" + brightness + "&" + imageWidth + "&" + imageHeight
+    property string maskParameter: imageWidth + "&" + imageHeight + "&" + clipX + "&" + clipY + "&" + clipWidth + "&" + clipHeight
 
     property bool maskEnable
 
@@ -54,12 +52,7 @@ Image {
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
 
-        source: maskEnable ? "image://kcMaskProvider/" + imageWidth + "&" +
-                                                         imageHeight + "&" +
-                                                         clipX + "&" +
-                                                         clipY + "&" +
-                                                         clipWidth + "&" +
-                                                         clipHeight : ""
+        source: fileUrl != "" && maskEnable ? "image://kcMaskProvider/" + maskParameter : ""
     }
 
     // drag frame

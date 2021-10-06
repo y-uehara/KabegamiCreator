@@ -10,6 +10,8 @@ Item {
         text: "Brightness"
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
     }
     Slider {
         id: slider

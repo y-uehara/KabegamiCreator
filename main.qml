@@ -28,10 +28,21 @@ ApplicationWindow {
     KCBrightnessSlider {
         id: kcBrightnessSlider
         height: 40
+
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: kcCropRatio.top
+    }
+
+    KCCropRatio {
+        id: kcCropRatio
+        height: 40
+
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
     }
+
 
     FileDialog {
         id: openFileDialog

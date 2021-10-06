@@ -4,5 +4,6 @@
         <file>KCMenuBar.qml</file>
         <file>KCImageCanvas.qml</file>
         <file>KCBrightnessSlider.qml</file>
+        <file>KCCropRatio.qml</file>
     </qresource>
 </RCC>
